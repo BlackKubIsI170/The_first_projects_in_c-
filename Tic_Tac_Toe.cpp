@@ -75,6 +75,25 @@ int next(int* empty_box_, char* arr, char move){
     int empty_box[9];
     for (int i = 0;i < 9;i++) box[i] = arr[i];
     for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
+
+
+    for (int i = 0;i < 9;i++){
+        if (empty_box[i] == 0){
+            box[i] = 'X';
+            empty_box[i] = 1;
+            if (result(empty_box, box) == 10) return i;
+            for (int i = 0;i < 9;i++) box[i] = arr[i];
+            for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
+            box[i] = 'O';
+            empty_box[i] = 1;
+            if (result(empty_box, box) == -10) return i;
+            for (int i = 0;i < 9;i++) box[i] = arr[i];
+            for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
+        }
+    }
+
+    for (int i = 0;i < 9;i++) box[i] = arr[i];
+    for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
     int next_boxes[9 - sum(empty_box)][2];
     for (int i = 0, k = 0;i < 9;i++){
         if (empty_box[i] == 0){
