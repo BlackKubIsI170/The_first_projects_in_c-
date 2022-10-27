@@ -19,6 +19,9 @@ int main(){
     int empty_box[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     char box[9] = {'*', '*', '*', '*', '*', '*', '*', '*', '*'};
 
+    int n = next(empty_box, box, 'X');
+    box[n] = 'X';
+    empty_box[n] = 1;
     while (result(empty_box, box) != 0 && result(empty_box, box) != 10 && result(empty_box, box) != -10){
         prinT(box);
         int x, y;
@@ -89,6 +92,12 @@ int next(int* empty_box_, char* arr, char move){
             if (result(empty_box, box) == -10) return i;
             for (int i = 0;i < 9;i++) box[i] = arr[i];
             for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
+        }
+    }
+
+    for (int i = 0;i < 9;i++){
+        if (i == 0 || i == 2 || i == 6 || i == 8){
+            if (empty_box[i] == 0) return i;
         }
     }
 
