@@ -25,10 +25,13 @@ int main(){
     while (result(empty_box, box) != 0 && result(empty_box, box) != 10 && result(empty_box, box) != -10){
         prinT(box);
         int x, y;
-        std::cout << "Введите y: ";
-        std::cin >> x;
-        std::cout << "Введите x: ";
-        std::cin >> y;
+        do {
+            std::cout << std::endl;
+            std::cout << "Введите y: ";
+            std::cin >> x;
+            std::cout << "Введите x: ";
+            std::cin >> y;
+        } while (empty_box[(x - 1)* 3 + y - 1] != 0 || not(((x - 1)* 3 + y - 1) >= 0 && ((x - 1)* 3 + y - 1 <= 8)));
         box[(x - 1)* 3 + y - 1] = 'O';
         empty_box[(x - 1)* 3 + y - 1] = 1;
         int n = next(empty_box, box, 'X');
@@ -94,6 +97,7 @@ int next(int* empty_box_, char* arr, char move){
             for (int i = 0;i < 9;i++) empty_box[i] = empty_box_[i];
         }
     }
+    if (empty_box[4] == 0) return 4;
 
     for (int i = 0;i < 9;i++){
         if (i == 0 || i == 2 || i == 6 || i == 8){
